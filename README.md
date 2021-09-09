@@ -32,3 +32,6 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+Иконки [https://www.figma.com/file/SZlNwrPao1UUgGmeZwp3Jq/Material-Design-Icons-Community?node-id=0%3A1](https://www.figma.com/file/SZlNwrPao1UUgGmeZwp3Jq/Material-Design-Icons-Community?node-id=0%3A1)

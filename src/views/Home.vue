@@ -1,18 +1,42 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <base-header>
+      <template #default>Ваши копилки</template>
+      <template #rightIcon>
+        <svg-icon
+          @click.native="$router.push({ name: 'MoneyBoxAdd' })"
+          name="add"
+        />
+      </template>
+    </base-header>
+    <base-container>
+      <div v-for="box in boxes" :key="`box-${box.id}`">
+        <router-link :to="`/moneybox/edit/${box.id}`">
+          {{ box.name }}
+        </router-link>
+        <button type="button" @click="deleteBox(box.id)">Удалить</button>
+      </div>
+    </base-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import BaseContainer from "@/components/BaseContainer";
+import BaseHeader from "@/components/BaseHeader";
+import SvgIcon from "@/components/SvgIcon";
+import { mapState } from "vuex";
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
+  components: { SvgIcon, BaseHeader, BaseContainer },
+  computed: {
+    ...mapState(["boxes"]),
+  },
+  methods: {
+    deleteBox(boxId) {
+      if (confirm("Вы действительно хотите удалить копилку?")) {
+        this.$store.dispatch("deleteBox", boxId);
+      }
+    },
   },
 };
 </script>
